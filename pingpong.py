@@ -6,7 +6,7 @@ win_width = 700
 win_height = 500 
  
 mw = display.set_mode((win_width, win_height)) 
-back = (255, 255, 255)
+back = (255, 255,     255)
 clock = time.Clock() 
 
  
@@ -44,7 +44,11 @@ class Player(GameSprite):
 racket_l = Player('racket.png',10, 150,20,100,25)
 racket_r = Player('racket.png',660, 180,40,100,25)
 ball = GameSprite('ball.png', 330, 200,40,40,50)
- 
+
+font1 = font.Font(None, 40)
+lose1 = font1.render('PLAYER 1 LOSE!', True, (180, 0, 0))
+lose2 = font1.render('PLAYER 2 LOSE!', True, (180, 0, 0))
+
 speed_x = 3
 speed_y = 3
 finish = False 
@@ -69,9 +73,11 @@ while game:
 
         if ball.rect.x < 0:
             finish = True
+            mw.blit(lose1, (200, 200))
 
         if ball.rect.x > win_height:
             finish = True
+            mw.blit(lose2, (200, 200))
 
         racket_l.reset()
         racket_r.reset()
